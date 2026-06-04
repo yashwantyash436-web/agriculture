@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriSens Fertilizer Recommendation</title>
+  <style>
+    :root {
+      --primary: #2c7d54;
+      --secondary: #3ea16f;
+      --surface: #f7faf7;
+      --bg: #eef7f1;
+      --card: #ffffff;
+      --text: #16372e;
+      --muted: #61796e;
+      --border: rgba(28, 101, 78, 0.12);
+      --shadow: 0 25px 50px rgba(26, 64, 54, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', 'Roboto', sans-serif;
+      background: radial-gradient(circle at top left, rgba(62, 161, 111, 0.14), transparent 35%),
+        linear-gradient(180deg, #eef7f1 0%, #dce9d9 100%);
+      color: var(--text);
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 20%, rgba(62, 161, 111, 0.2) 0%, transparent 15%),
+        radial-gradient(circle at 80% 30%, rgba(87, 162, 109, 0.18) 0%, transparent 12%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(3rem, 4vw, 4.5rem);
+      line-height: 1.02;
+    }
+
+    .hero-copy {
+      margin: 1.2rem 0 0;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 65rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
+      background: rgba(62, 161, 111, 0.12);
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+
+    .panel h2 {
+      margin: 0 0 1rem;
+      font-size: 2rem;
+      color: var(--text);
+    }
+
+    .panel p {
+      margin: 0 0 1.75rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 1.3rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .form-group label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .form-group select,
+    .form-group input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      font-size: 1rem;
+      color: var(--text);
+      background: #fbfdf9;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #8ea69a;
+    }
+
+    .form-group select:focus,
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--secondary);
+      transform: translateY(-1px);
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem 1.6rem;
+      border-radius: 18px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(46, 126, 86, 0.18);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .summary {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .result-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f3faf3 100%);
+      border: 1px solid rgba(38, 132, 79, 0.12);
+      border-radius: 24px;
+      padding: 1.8rem;
+    }
+
+    .result-card .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .result-card h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .result-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .result-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 1rem;
+    }
+
+    .stat-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.4rem;
+    }
+
+    .stat-box strong {
+      display: block;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-box span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .advice {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .advice-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      background: #f9fff8;
+      border: 1px solid rgba(62, 161, 111, 0.14);
+      border-radius: 18px;
+      padding: 1.25rem;
+    }
+
+    .advice-item .dot {
+      width: 0.9rem;
+      height: 0.9rem;
+      margin-top: 0.45rem;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .advice-item p {
+      margin: 0;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .note {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page-shell {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .hero-title {
+        font-size: 2.7rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <section class="hero">
+      <div>
+        <span class="hero-badge">Smart Fertilizer Advisor</span>
+        <h1 class="hero-title">Grow stronger crops with the right fertilizer plan.</h1>
+        <p class="hero-copy">Enter your crop, soil and nutrient levels to receive a beginner-friendly fertilizer recommendation, usage tips, and practical farming advice.</p>
+      </div>
+      <div class="panel" style="background: linear-gradient(135deg, rgba(62,161,111,0.15), rgba(47,110,87,0.06)); border: none;">
+        <h2>Why it helps</h2>
+        <p>Balanced nutrition reduces waste, improves yield, and keeps soil healthy. Our recommendation system turns simple N-P-K inputs into a clear fertilizer plan for small farms and new growers.</p>
+      </div>
+    </section>
+
+    <div class="layout">
+      <div class="panel">
+        <h2>Fertilizer Planner</h2>
+        <p>Choose your crop and soil, then share your current nitrogen, phosphorus, and potassium levels.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="cropType">Crop type</label>
+            <select id="cropType">
+              <option>Paddy</option>
+              <option>Wheat</option>
+              <option>Maize</option>
+              <option>Cotton</option>
+              <option>Sugarcane</option>
+              <option>Tomato</option>
+              <option>Potato</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="soilType">Soil type</label>
+            <select id="soilType">
+              <option>Loamy</option>
+              <option>Sandy</option>
+              <option>Clay</option>
+              <option>Silty</option>
+              <option>Peaty</option>
+              <option>Chalky</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nitrogenInput">Current Nitrogen (N)</label>
+            <input id="nitrogenInput" type="number" min="0" max="300" step="1" placeholder="mg/kg or relative value" value="45" />
+          </div>
+
+          <div class="form-group">
+            <label for="phosphorusInput">Current Phosphorus (P)</label>
+            <input id="phosphorusInput" type="number" min="0" max="200" step="1" placeholder="mg/kg or relative value" value="25" />
+          </div>
+
+          <div class="form-group">
+            <label for="potassiumInput">Current Potassium (K)</label>
+            <input id="potassiumInput" type="number" min="0" max="250" step="1" placeholder="mg/kg or relative value" value="30" />
+          </div>
+
+          <div class="form-group wide">
+            <button id="recommendButton" class="btn-primary" type="button">Get Recommendation</button>
+          </div>
+        </div>
+
+        <div class="note">Tip: If you are unsure of soil tests, use conservative values and monitor crop response closely.</div>
+      </div>
+
+      <div class="panel">
+        <h2>Recommendation</h2>
+        <p id="recommendationSummary">Use the planner to generate a fertilizer recommendation and helpful farming tips.</p>
+
+        <div class="summary">
+          <div class="result-card">
+            <span class="label">Fertilizer</span>
+            <h3 id="fertilizerName">–</h3>
+            <p id="fertilizerDescription">A smart recommendation will appear after you submit your details.</p>
+          </div>
+
+          <div class="result-grid">
+            <div class="stat-box">
+              <strong id="quantityValue">–</strong>
+              <span>Suggested quantity</span>
+            </div>
+            <div class="stat-box">
+              <strong id="soilAdviceLabel">–</strong>
+              <span>Soil advice</span>
+            </div>
+          </div>
+
+          <div class="advice">
+            <div class="advice-item">
+              <span class="dot"></span>
+              <p id="usageTip">Enter the input values and click the button to see a fertilizer plan.</p>
+            </div>
+            <div class="advice-item">
+              <span class="dot"></span>
+              <p id="farmingAdvice">Advice for crop care and nutrient management will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const cropProfiles = {
+      Paddy: { N: 90, P: 45, K: 45, fertilizer: 'Urea, DAP and MOP mix' },
+      Wheat: { N: 110, P: 55, K: 55, fertilizer: 'Split N application with DAP and MOP' },
+      Maize: { N: 130, P: 60, K: 60, fertilizer: 'Balanced NPK application' },
+      Cotton: { N: 160, P: 70, K: 70, fertilizer: 'Urea + SSP + MOP for fiber quality' },
+      Sugarcane: { N: 190, P: 75, K: 95, fertilizer: 'Split doses of N with MOP and DAP' },
+      Tomato: { N: 140, P: 65, K: 100, fertilizer: 'Potassium-rich blend with DAP' },
+      Potato: { N: 170, P: 75, K: 150, fertilizer: 'High K plan with DAP and MOP' },
+    };
+
+    const soilGuidance = {
+      Loamy: 'Loamy soil is ideal for most crops. Keep moisture steady and use balanced nutrients.',
+      Sandy: 'Sandy soil drains quickly. Apply fertilizer in smaller split doses and keep soil moist.',
+      Clay: 'Clay soil retains water. Avoid overwatering and use gypsum or compost to improve structure.',
+      Silty: 'Silty soil holds nutrients well. Maintain drainage and add organic matter for stability.',
+      Peaty: 'Peaty soil is rich in organic matter. Monitor nitrogen carefully and avoid acid buildup.',
+      Chalky: 'Chalky soil is alkaline. Use sulfur or organic amendments to improve nutrient availability.',
+    };
+
+    const cropType = document.getElementById('cropType');
+    const soilType = document.getElementById('soilType');
+    const nitrogenInput = document.getElementById('nitrogenInput');
+    const phosphorusInput = document.getElementById('phosphorusInput');
+    const potassiumInput = document.getElementById('potassiumInput');
+    const recommendButton = document.getElementById('recommendButton');
+
+    const fertilizerName = document.getElementById('fertilizerName');
+    const fertilizerDescription = document.getElementById('fertilizerDescription');
+    const quantityValue = document.getElementById('quantityValue');
+    const soilAdviceLabel = document.getElementById('soilAdviceLabel');
+    const usageTip = document.getElementById('usageTip');
+    const farmingAdvice = document.getElementById('farmingAdvice');
+    const recommendationSummary = document.getElementById('recommendationSummary');
+
+    function createRecommendation() {
+      const crop = cropType.value;
+      const soil = soilType.value;
+      const currentN = Number(nitrogenInput.value) || 0;
+      const currentP = Number(phosphorusInput.value) || 0;
+      const currentK = Number(potassiumInput.value) || 0;
+      const profile = cropProfiles[crop];
+
+      const targetN = profile.N;
+      const targetP = profile.P;
+      const targetK = profile.K;
+      const needN = Math.max(0, targetN - currentN);
+      const needP = Math.max(0, targetP - currentP);
+      const needK = Math.max(0, targetK - currentK);
+
+      const fertilizerParts = [];
+      const quantities = [];
+      const usageLines = [];
+      const adviceLines = [];
+
+      if (needN > 0) {
+        const ureaQty = Math.ceil(needN * 1.4);
+        fertilizerParts.push('Urea');
+        quantities.push(`Urea: ${ureaQty} kg`);
+        usageLines.push('Apply Urea in split doses: half at planting and half at plant growth stage.');
+      }
+
+      if (needP > 0) {
+        const dapQty = Math.ceil(needP * 1.8);
+        fertilizerParts.push('DAP');
+        quantities.push(`DAP: ${dapQty} kg`);
+        usageLines.push('Use DAP at planting time to support early root growth.');
+      }
+
+      if (needK > 0) {
+        const mopQty = Math.ceil(needK * 1.5);
+        fertilizerParts.push('MOP');
+        quantities.push(`MOP: ${mopQty} kg`);
+        usageLines.push('Apply MOP before flowering for stronger yield and quality.');
+      }
+
+      const cropAdvice = `For ${crop}, focus on ${profile.fertilizer.toLowerCase()} and review your soil moisture regularly.`;
+      const soilAdvice = soilGuidance[soil];
+
+      if (needN === 0 && needP === 0 && needK === 0) {
+        fertilizerName.textContent = 'Balanced Nutrition Achieved';
+        fertilizerDescription.textContent = `Your ${crop.toLowerCase()} plot is nutritionally balanced for N, P, and K. Continue with good agronomy and regular soil checks.`;
+        quantityValue.textContent = 'No additional fertilizer needed';
+        usageTip.textContent = 'Maintain current management and use organic mulch or compost to sustain nutrient levels.';
+        farmingAdvice.textContent = `Keep monitoring crop health, avoid over-fertilization, and rotate crops to preserve soil fertility.`;
+        soilAdviceLabel.textContent = soilAdvice;
+        recommendationSummary.textContent = 'Nutrient levels are sufficient. Use maintenance techniques rather than extra fertilizer.';
+        return;
+      }
+
+      fertilizerName.textContent = fertilizerParts.join(' + ');
+      fertilizerDescription.textContent = `Recommended dose based on ${crop.toLowerCase()} nutritional needs and ${soil.toLowerCase()} soil characteristics.`;
+      quantityValue.textContent = quantities.join(' · ');
+      soilAdviceLabel.textContent = soilAdvice;
+      usageTip.textContent = usageLines.length > 0 ? usageLines[0] : 'Monitor plant condition and keep soil evenly moist.';
+      farmingAdvice.textContent = `${cropAdvice} ${soilAdvice} ${usageLines.slice(1).join(' ')}`;
+      recommendationSummary.textContent = `Based on current N-P-K values, your fertilizer recommendation is ready for ${crop.toLowerCase()} in ${soil.toLowerCase()} soil.`;
+    }
+
+    recommendButton.addEventListener('click', createRecommendation);
+    [cropType, soilType, nitrogenInput, phosphorusInput, potassiumInput].forEach((element) => {
+      element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          createRecommendation();
+        }
+      });
+    });
+
+    createRecommendation();
+  </script>
+</body>
+</html>

@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgriSens</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- navbar sections starts  -->
+    <header class="header">
+      <div class="logo">
+        <h1>AgriSens</h1>
+      </div>
+
+      <nav class="navbar">
+        <a id="nav-home" href="#home">Home</a>
+        <a id="nav-features" href="#features">Features</a>
+        <a id="nav-rentals" href="#rentals">Rentals</a>
+        <a id="nav-about" href="#about">About</a>
+        <a id="nav-contact" href="#footer">Contact</a>
+        <a id="nav-explore" href="explore/index.html" class="btn">EXPLORE NOW</a>
+      </nav>
+
+      <div class="lang-switcher">
+        <label for="languageSelect">Language</label>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+          <option value="kn">Kannada</option>
+          <option value="te">Telugu</option>
+          <option value="ta">Tamil</option>
+          <option value="mr">Marathi</option>
+        </select>
+        <button id="voice-btn" type="button" class="voice-btn" aria-label="Voice Assistant">
+          <i class="fas fa-microphone"></i>
+        </button>
+      </div>
+
+      <div class="voice-status" id="voice-status">Tap mic to speak</div>
+      <div class="voice-output-box" id="voice-output-box">
+        <p class="voice-output-label" id="voice-output-label">Waiting for command</p>
+        <p class="voice-output-text" id="voice-output-text">Your spoken words will appear here after you speak.</p>
+      </div>
+
+      <div class="fas fa-bars" id="menu-btn"></div>
+    </header>
+    <!-- navbar sections ends  -->
+
+    <section class="voice-assistant-panel" id="voice-assistant-panel">
+      <div class="voice-card">
+        <h2 id="voice-panel-title">Voice Assistant</h2>
+        <p id="voice-text" class="voice-text">Tap the microphone and speak your question.</p>
+        <p id="voice-response" class="voice-response">Try: “Suggest suitable crops”, “Show weather forecast”, or “Government schemes”.</p>
+      </div>
+    </section>
+
+    <!-- home section stars  -->
+
+    <section class="home" id="home">
+      <div class="content">
+        <h1 id="hero-title">YOUR SMART FARMING ASSISTANT</h1>
+        <p id="hero-subtitle">Smart Crops, Smart Choices with AgriSens!</p>
+
+        <a href="guide/index.html" class="home-btn" target="_blank "
+          id="hero-button">Smart Farming guide</a
+        >
+      </div>
+
+      <div class="image">
+        <img class="image" src="images/amit-front2.jpg" alt="heading-image" />
+      </div>
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- features sectin starts  -->
+
+    <section class="features" id="features">
+      <div class="heading">
+        <h1 id="features-heading">Features</h1>
+        <p id="features-description">
+          AgriSens provides farmers with essential tools for smarter farming. It
+          offers personalized crop recommendations based on soil and climate,
+          helps identify plant diseases through image analysis, and provides
+          real-time weather forecasts. The app also includes features for crop
+          planning and guidance, ensuring optimal farming decisions for better
+          yields and healthier crops.
+        </p>
+      </div>
+
+      <div class="button-container0">
+        <a href="https://crop-recomm.streamlit.app/" class="buttonn active"
+          id="btn-crop-rec">Crop Recommendations</a
+        >
+        <a
+          href="https://agrisens-crop-disease-pred.streamlit.app/"
+          class="buttonn"
+          id="btn-disease">Identify Plant Diseases</a
+        >
+        <a href="weather-forecast/index.html" class="buttonn"
+          id="btn-weather">Today's Weather Forecast</a
+        >
+        <a href="developing-phase/index.html" class="buttonn"
+          id="btn-fertilizer">Fertilizer recommendation</a
+        >
+        <a href="guide/index.html" class="buttonn" id="btn-guide">Smart Farming Guidance</a>
+      </div>
+
+      <div class="row">
+        <!-- 0 Tab  -->
+        <div class="image">
+          <img
+            src="images/weather.jpg"
+            alt="crop-planning"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1 id="feature-weather-title">weather Forecast</h1>
+          <p id="feature-weather-desc">
+            Plan Your Farming With Precision! Check Real-Time Weather Insights
+            On Temperature, Humidity, And More. Integrated With Our
+            Crop-Prediction Model For Optimal Decisions. Explore Historical
+            Data, Get Alerts, And Access Educational Resources.
+          </p>
+          <a href="#" class="all-btn" id="btn-more-info-weather">more info</a>
+        </div>
+
+        <!-- 0 Tab  -->
+
+        <!-- 1 Tab  -->
+
+        <div class="content">
+          <h1 id="feature-planning-title">Smart Crop Planning</h1>
+          <p id="feature-planning-desc">
+            Harness the power of data analysis to predict crop suitability,
+            providing insights into optimal cultivation conditions. AgriSens
+            optimizes farming decisions based on comprehensive factors like soil
+            quality, weather, and more.
+          </p>
+          <a href="#" class="all-btn" id="btn-more-info-planning">more info</a>
+        </div>
+
+        <div class="image">
+          <img
+            src="images/crop-planning.jpg"
+            alt="crop-planning"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <!-- 1 Tab  -->
+
+        <!-- 2 Tab  -->
+        <div class="image">
+          <img
+            src="images/desease-dect.jpeg"
+            alt="Disease-Detection"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1 id="feature-disease-title">Plant Disease Identification</h1>
+          <p id="feature-disease-desc">
+            Assist farmers in detecting plant diseases by enabling image
+            uploads, utilizing this analysis for prompt and precise
+            identification, enhancing farming efficiency and crop management.
+          </p>
+          <a href="#" class="all-btn" id="btn-more-info-disease">more info</a>
+        </div>
+
+        <!-- 2 Tab  -->
+
+        <!-- 3 Tab  -->
+
+        <div class="content">
+          <h1 id="feature-guide-title">Smart Farming, Simple Guidance</h1>
+          <p id="feature-guide-desc">
+            Smart Crop Guide offers a simple, step-by-step plan for growing
+            crops. It provides expert planting tips, tracks growth stages, and
+            sends watering reminders. The app also gives pest control advice,
+            harvest timing, weather updates, and fertilizer recommendations to
+            ensure healthy crops.
+          </p>
+
+          <a href="#" class="all-btn" id="btn-more-info-guide">more info</a>
+        </div>
+
+        <div class="image">
+          <img
+            src="images/guide.png"
+            alt="ranked-recommendations"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <!-- 3 Tab  -->
+
+        <!-- 4 Tab  -->
+
+        <div class="image">
+          <img
+            src="images/modern-farm.jpg"
+            alt="modern-farms"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <div class="content">
+          <h1 id="feature-innovations-title">Innovations for Modern Farms</h1>
+          <p id="feature-innovations-desc">
+            Smart Crop Tech, Precision Farming, and Customizable Solutions for
+            Sustainable and Efficient Agriculture!
+          </p>
+          <a href="#" class="all-btn" id="btn-more-info-innovations">more info</a>
+        </div>
+
+        <!-- 4 Tab  -->
+
+        <!-- 5 Tab  -->
+
+        <div class="content">
+          <h1 id="feature-interface-title">User-Friendly Interface</h1>
+          <p id="feature-interface-desc">
+            Our application features a user-friendly interface designed for
+            farmers of all technological backgrounds. With simple inputs like
+            location and crop selection, users can effortlessly access detailed
+            information on crop suitability and recommended planting schedules.
+          </p>
+          <a href="#" class="all-btn" id="btn-more-info-interface">more info</a>
+        </div>
+
+        <div class="image">
+          <img
+            src="images/User-Friendly.jpeg"
+            alt="user-friendly"
+            class="rounded-corner-image"
+          />
+        </div>
+
+        <!-- 5 Tab  -->
+      </div>
+    </section>
+
+    <!-- features sectin ends -->
+
+    <!-- rentals section starts -->
+    <section class="rentals" id="rentals">
+      <div class="heading">
+        <h1>Land & Machine Rental System</h1>
+        <p>Rent agricultural land and farming equipment from local owners. Earn passive income by listing your own machinery.</p>
+      </div>
+
+      <!-- Search and Filter Section -->
+      <div class="rental-controls">
+        <div class="search-bar">
+          <input type="text" id="rental-search" placeholder="Search machines, land, or location...">
+          <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="filter-options">
+          <select id="category-filter">
+            <option value="all">All Categories</option>
+            <option value="tractor">Tractors</option>
+            <option value="harvester">Harvesters</option>
+            <option value="pump">Water Pumps</option>
+            <option value="sprayer">Sprayers</option>
+            <option value="seeder">Seed Sowers</option>
+            <option value="land">Land Leasing</option>
+          </select>
+          <select id="location-filter">
+            <option value="all">All Locations</option>
+            <option value="nearby">Nearby (within 50km)</option>
+            <option value="district">Same District</option>
+            <option value="state">Same State</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Rental Cards Grid -->
+      <div class="rental-grid">
+        <!-- Tractor Card -->
+        <div class="rental-card" data-category="tractor" data-location="nearby">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400" alt="Tractor">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>John Deere 5050D Tractor</h3>
+            <div class="card-details">
+              <span class="price">₹2,500/day</span>
+              <span class="owner">AgriTech Solutions</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Bangalore, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Tractor')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('AgriTech Solutions')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Harvester Card -->
+        <div class="rental-card" data-category="harvester" data-location="district">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1592982375567-7b3930a7f9a9?w=400" alt="Harvester">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>Combine Harvester CH-100</h3>
+            <div class="card-details">
+              <span class="price">₹8,000/day</span>
+              <span class="owner">FarmEquip Rentals</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Mysore, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Harvester')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('FarmEquip Rentals')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Water Pump Card -->
+        <div class="rental-card" data-category="pump" data-location="nearby">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400" alt="Water Pump">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>Submersible Pump 10HP</h3>
+            <div class="card-details">
+              <span class="price">₹1,200/day</span>
+              <span class="owner">WaterTech Systems</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Tumkur, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Water Pump')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('WaterTech Systems')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sprayer Card -->
+        <div class="rental-card" data-category="sprayer" data-location="state">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400" alt="Sprayer">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>Agricultural Sprayer AS-500</h3>
+            <div class="card-details">
+              <span class="price">₹800/day</span>
+              <span class="owner">GreenField Equip</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Hassan, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Sprayer')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('GreenField Equip')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seed Sowing Machine Card -->
+        <div class="rental-card" data-category="seeder" data-location="nearby">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?w=400" alt="Seed Sowing Machine">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>Seed Drill Machine SD-200</h3>
+            <div class="card-details">
+              <span class="price">₹1,500/day</span>
+              <span class="owner">SeedMaster Co.</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Mandya, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Seed Sowing Machine')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('SeedMaster Co.')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Farm Land Leasing Card -->
+        <div class="rental-card" data-category="land" data-location="district">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400" alt="Farm Land">
+            <div class="availability-badge available">Available</div>
+          </div>
+          <div class="card-content">
+            <h3>5 Acre Farm Land</h3>
+            <div class="card-details">
+              <span class="price">₹15,000/month</span>
+              <span class="owner">LandOwner Kumar</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Chikmagalur, Karnataka</span>
+            </div>
+            <div class="card-buttons">
+              <button class="book-btn" onclick="bookItem('Farm Land')">Book Now</button>
+              <button class="contact-btn" onclick="contactOwner('LandOwner Kumar')">Contact Owner</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earn Through Rentals Card -->
+        <div class="rental-card featured-card" data-category="upload" data-location="all">
+          <div class="card-image">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400" alt="Earn Money">
+            <div class="featured-badge">Featured</div>
+          </div>
+          <div class="card-content">
+            <h3>Earn Through Rentals</h3>
+            <div class="card-details">
+              <span class="price">List Your Equipment</span>
+              <span class="owner">Passive Income</span>
+              <span class="location"><i class="fas fa-map-marker-alt"></i> Anywhere</span>
+            </div>
+            <div class="card-buttons">
+              <button class="upload-btn" onclick="uploadMachine()">Upload Machine</button>
+              <button class="learn-btn" onclick="learnMore()">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nearby Rentals Section -->
+      <div class="nearby-section">
+        <h2>Nearby Rentals</h2>
+        <div class="nearby-grid">
+          <div class="nearby-item">
+            <i class="fas fa-tractor"></i>
+            <span>3 Tractors within 20km</span>
+          </div>
+          <div class="nearby-item">
+            <i class="fas fa-cogs"></i>
+            <span>5 Machines within 50km</span>
+          </div>
+          <div class="nearby-item">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>12 Land plots available</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- rentals section ends -->
+
+    <section class="gov-support" id="gov-support">
+      <div class="heading">
+        <h1>Government Schemes & Farmer Support</h1>
+        <p>Access trusted government schemes, subsidies, insurance, and direct farming support in one place for informed decisions and faster help.</p>
+      </div>
+
+      <div class="support-grid">
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-piggy-bank"></i></div>
+          <h3>PM-Kisan Scheme</h3>
+          <p>Direct income support for farmers, helping secure cash flow for crop expenses and family needs.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Small and marginal farmers with registered land.</li>
+            <li>Benefits: ₹6,000 per year in three instalments.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://pmkisan.gov.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://pmkisan.gov.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Crop Insurance</h3>
+          <p>Protect crops from weather shocks, pest loss, and other risks with affordable government-backed insurance.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Farmers with notified crops and insured land.</li>
+            <li>Benefits: Compensation for crop damage and loss.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://www.pmfby.gov.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://www.pmfby.gov.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-seedling"></i></div>
+          <h3>Fertilizer Subsidy</h3>
+          <p>Lower the cost of essential fertilizer and improve nutrient use while supporting sustainable crop growth.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Registered farmers buying subsidized fertilizer.</li>
+            <li>Benefits: Reduced input cost for balanced nutrition.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://fert.nic.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://fert.nic.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
+          <h3>Farming Loan Support</h3>
+          <p>Get low-interest credit for seeds, equipment, and working capital through government farm loan schemes.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Farmers with valid KYC and land records.</li>
+            <li>Benefits: Affordable credit for smooth farming operations.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-tractor"></i></div>
+          <h3>Tractor/Machine Subsidy</h3>
+          <p>Support for buying machinery, pumps, and equipment to reduce manual effort and increase farm efficiency.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Farmers, SHGs, and custom hiring centres.</li>
+            <li>Benefits: Subsidy on tractors, harvesters, and irrigation pumps.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+
+        <article class="scheme-card">
+          <div class="icon"><i class="fas fa-water"></i></div>
+          <h3>Irrigation Support</h3>
+          <p>Access subsidies for drip, sprinkler and micro-irrigation systems to use water more efficiently.</p>
+          <ul class="scheme-details">
+            <li>Eligibility: Farmers with irrigation requirements and land records.</li>
+            <li>Benefits: Lower water use, higher yield, and better crop security.</li>
+          </ul>
+          <div class="scheme-btn-group">
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn">Learn More</a>
+            <a href="https://www.agricoop.nic.in/" target="_blank" class="scheme-btn secondary">Apply Now</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="gov-contact">
+        <div class="contact-card">
+          <h2>Need Support?</h2>
+          <p>For help with scheme registration, application steps, or general support, use the farmer helpline and official resources below.</p>
+          <ul class="contact-list">
+            <li><strong>Helpline:</strong> +91 1800-180-1551</li>
+            <li><strong>Email:</strong> support@agrisens.org</li>
+            <li><strong>Scheme Help:</strong> Visit the official agriculture ministry portal.</li>
+          </ul>
+        </div>
+        <div class="contact-card">
+          <h2>How to Use</h2>
+          <p>Choose the scheme that best matches your needs, review eligibility, and follow the links to official government portals for reliable, up-to-date information.</p>
+          <ul class="contact-list">
+            <li>See eligibility and benefits at a glance.</li>
+            <li>Open the official site with one click.</li>
+            <li>Keep documents ready: ID, land papers, and bank details.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="market" id="market-prices">
+      <div class="heading">
+        <h1 id="market-heading">Real-Time Crop Market Prices</h1>
+        <p id="market-description">Track crop price movement with a live market panel to help farmers decide the best time to sell.</p>
+      </div>
+
+      <div class="market-container">
+        <div class="market-card">
+          <h2 id="market-card-title">Market Price Watch</h2>
+          <p id="market-card-desc">Select a crop to see the latest market price and simulated price movement.</p>
+
+          <div class="market-control">
+            <label for="market-price-select" id="market-select-label">Choose a crop</label>
+            <select id="market-price-select">
+              <option value="Paddy">Paddy</option>
+              <option value="Wheat">Wheat</option>
+              <option value="Maize">Maize</option>
+              <option value="Sugarcane">Sugarcane</option>
+              <option value="Cotton">Cotton</option>
+              <option value="Tomato">Tomato</option>
+              <option value="Potato">Potato</option>
+              <option value="Onion">Onion</option>
+            </select>
+          </div>
+
+          <div class="market-display">
+            <div class="price-box">
+              <span id="price-label">Current Price</span>
+              <strong id="market-price-value">₹0.00/quintal</strong>
+            </div>
+            <div class="change-box">
+              <span id="change-label">24h Change</span>
+              <strong id="market-price-change">+0.00%</strong>
+            </div>
+          </div>
+
+          <div class="market-footer">
+            <p id="market-price-update">Updated just now</p>
+          </div>
+        </div>
+
+        <div class="market-info">
+          <h3 id="market-info-title">Why this is useful</h3>
+          <p id="market-info-desc">Knowing market prices helps you choose the right crop, plan harvest timing, and maximize revenue. Prices refresh automatically to simulate live market movement.</p>
+          <ul>
+            <li id="market-benefit-1">Compare crop values instantly</li>
+            <li id="market-benefit-2">See price direction with clear trend color</li>
+            <li id="market-benefit-3">Use market insight for smarter selling decisions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- about section starts  -->
+
+    <section class="about" id="about">
+      <div class="heading">
+        <h1 id="about-heading">Team Members</h1>
+        <p id="about-description">Introduce the talented individuals shaping the AgriSens project.</p>
+      </div>
+
+      <div class="box-container">
+        <div class="box">
+         <img src="images/yash.jpeg" alt="Yash" />
+
+          <h3>Yashwanth</h3>
+          <p>
+            B.Tech | ISE <br />
+            VVIET
+          </p>
+          <a href="https://www.instagram.com/yashwanth_s__12?igsh=aWMzeTN6bHQwdWlu" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/yashwanth-s-81a1033b8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/yashwantyash436-web" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+        <div class="box">
+          <img src="images/sai ram.jpeg" alt="Sai Ram" />
+
+          <h3>Sai Ram C</h3>
+
+          <p>
+            B.E | ISE <br />
+            VVIET
+          </p>
+
+          <a
+            href="https://www.instagram.com/mister__sai123?utm_source=qr&igsh=MXR5d3AwMmpzN3JsaA=="
+            target="_blank"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/sai-ram-c-11041b329?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            target="_blank"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a href="#" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        
+        <div class="box">
+          <img src="images/Sinchana GN.jpeg" alt="Sinchana GN" />
+
+          <h3>Sinchana G N</h3>
+
+          <p>
+            B.E | ISE <br />
+            VVIET
+          </p>
+
+          <a
+            href="https://www.instagram.com/sinchu._.shetty?utm_source=qr&igsh=NGprZmEyM3lrM2xi"
+            target="_blank"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="#" target="_blank">
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a
+            href="https://github.com/sinchanagn98-lgtm"
+            target="_blank"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <div class="box">
+          <img src="images/depika.jpeg" alt="Deepika" />
+
+          <h3>Deepika K</h3>
+
+          <p>
+            B.E | ISE <br />
+            VVIET
+          </p>
+
+          <a
+            href="https://www.instagram.com/__deepika6170?utm_source=qr&igsh=MWxqNHVmd2Uwemt1Mw=="
+            target="_blank"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/deepika-k-32b362354?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+            target="_blank"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+
+          <a
+            href="https://github.com/Deepika16076"
+            target="_blank"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- about section ends -->
+
+    <!-- footer section starts  -->
+
+    <section class="footer" id="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3 id="footer-quick-links">quick links</h3>
+          <a href="#home"><i class="fas fa-chevron-right"></i>home</a>
+          <a href="#features"><i class="fas fa-chevron-right"></i>features</a>
+          <a href="#about"><i class="fas fa-chevron-right"></i>about</a>
+        </div>
+
+        <div class="box">
+          <h3 id="footer-extra-links">extra links</h3>
+          <a href="#"><i class="fas fa-chevron-right"></i>ask questions</a>
+          <a href="#"><i class="fas fa-chevron-right"></i>terms of use</a>
+          <a href="#"><i class="fas fa-chevron-right"></i>privacy policy</a>
+        </div>
+
+        <div class="box">
+          <h3 id="footer-helpful-resources">Helpful Resources</h3>
+          <a href="#"><i class="fas fa-chevron-right"></i> FAQs</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> User Guides</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> Support Center</a>
+        </div>
+
+        <div class="box">
+          <h3 id="footer-stay-connected">Stay Connected</h3>
+          <a href="#"><i class="fas fa-chevron-right"></i> Future Scope</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> Community Forum</a>
+          <a href="#"><i class="fas fa-chevron-right"></i> Newsletter</a>
+        </div>
+      </div>
+
+      <div class="credit">
+        © Copyright – All Rights Reserved
+        <a href="" target="_blank"><span>Team AgriSens</span> </a>
+      </div>
+    </section>
+
+    <!-- footer section ends -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
